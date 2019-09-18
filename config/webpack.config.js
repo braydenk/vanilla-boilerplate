@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-module.exports = (env = {}) => {
+module.exports = ({ env }) => {
   const isProduction = env.production === true;
 
   return {
@@ -16,7 +16,8 @@ module.exports = (env = {}) => {
       hot: true
     },
     output: {
-      path: path.resolve(__dirname, 'dist'),
+      path: path.resolve(__dirname, '../', 'dist'),
+      publicPath: '/',
       filename: 'bundle.js'
     },
     module: {
