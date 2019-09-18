@@ -1,4 +1,6 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = (env = {}) => {
   const isProduction = env.production === true;
@@ -33,6 +35,13 @@ module.exports = (env = {}) => {
           use: ['file-loader']
         }
       ]
-    }
+    },
+    plugins: [
+      new CleanWebpackPlugin(),
+      new HtmlWebpackPlugin({
+        title: 'Boilerplate',
+        template: './src/index.html'
+      })
+    ]
   };
 };
