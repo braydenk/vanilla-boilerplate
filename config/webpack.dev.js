@@ -1,3 +1,9 @@
 module.exports = {
-  mode: 'development'
+  mode: 'development',
+  devtool: 'inline-source-map',
+  devServer: {
+    contentBase: './dist',
+    hot: true,
+    open: true,
+  },
 };

@@ -1,8 +1,8 @@
-function init () {
-  const element = document.createElement('div')
-  element.innerHTML = 'WORKS!'
-
-  return element
+function init() {
+  const root = document.getElementById('root');
+  console.log(root);
 }
 
-document.body.appendChild(init())
+window.onload = () => {
+  init();
+};
