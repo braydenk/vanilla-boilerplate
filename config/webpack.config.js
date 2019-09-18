@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const devConfig = require('./webpack.dev');
 const prodConfig = require('./webpack.prod');
@@ -16,7 +17,11 @@ const baseConfig = {
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: [
+          { loader: MiniCssExtractPlugin.loader },
+          'style-loader',
+          'css-loader',
+        ],
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
@@ -29,6 +34,11 @@ const baseConfig = {
     new HtmlWebpackPlugin({
       inject: true,
       template: './public/index.html',
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css',
+      ignoreOrder: false,
     }),
   ],
   output: {
